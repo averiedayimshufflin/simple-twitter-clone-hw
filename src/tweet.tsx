@@ -10,7 +10,37 @@ Also, if the post isn't liked already, then you want to display a white heart "�
 display a red heart "❤️" make sure to increase or decrease the like counter appropriately.
 Theres a 'tweet' class you can use to style your tweet.
 */
+type TweetProps = {
+    username: string;
+    content: string;
+    likes: number;
+}
+function Tweet(props: TweetProps) {
+    const [liked, setLiked] = useState(0);
+    const [isLiked, setIsLiked] = useState(false);
+
+    const handleLike = () =>{
+        if(isLiked){
+            setLiked(liked-1);
+            setIsLiked(false);
+        }
+        else{
+            setLiked(liked+1);
+            setIsLiked(true);
+        }
+
+    }
+    return (
+        <div className = "tweet">
+            <h2>{props.username}</h2>
+            <p>{props.content}</p>
+            <button onClick={handleLike}>{isLiked ? "❤️" : "🤍"}</button>
+            <span>{liked} Likes</span>
+        </div>
+    )
+}
 
 
+export default Tweet;
 
 // export default Tweet;
